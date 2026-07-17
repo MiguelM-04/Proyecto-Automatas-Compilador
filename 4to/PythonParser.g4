@@ -6,8 +6,6 @@ options {
 
 programa: sentencia* EOF;
 
-// esto de NEWLINE* es porque a veces quedan comentarios o lineas vacias sueltas
-// entre una sentencia y otra, si no se rompe el parser ahi
 sentencia: NEWLINE* sentencia_simple NEWLINE | NEWLINE* sentencia_compuesta;
 
 sentencia_simple: sentencia_pequenia (PUNTO_COMA sentencia_pequenia)* PUNTO_COMA?;
@@ -54,7 +52,7 @@ definicion_funcion:
 
 parametros: IDENTIFICADOR (COMA IDENTIFICADOR)*;
 
-// un bloque puede ser una sola linea (if x: return y) o con indentacion real
+// un bloque puede ser una sola linea o con indentacion real
 bloque: sentencia_simple NEWLINE | NEWLINE INDENT sentencia+ DEDENT;
 
 prueba: prueba_or;
@@ -64,7 +62,7 @@ prueba_not: NOT prueba_not | comparacion;
 
 comparacion: expr_aritmetica (comparador expr_aritmetica)*;
 
-// aparte de == < > etc, python usa "in" y "is" para comparar
+// aparte de == < >, python usa "in" y "is" para comparar
 comparador
     : operador_comparacion
     | IN
@@ -87,7 +85,7 @@ sufijo
     | PUNTO IDENTIFICADOR
     ;
 
-// argumento puede ser normal o con nombre, ej print(x) vs st.write(sep=", ")
+// argumento puede ser normal o con nombre
 argumentos: argumento (COMA argumento)*;
 argumento: (IDENTIFICADOR IGUAL)? prueba;
 
