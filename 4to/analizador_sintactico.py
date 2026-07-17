@@ -48,3 +48,8 @@ class AnalizadorSintactico:
  
     def es_valido(self):
         return len(self.errores.lista) == 0
+    
+    def obtener_arbol_texto(self):
+        if self.arbol is None:
+            return ""
+        return self.arbol.toStringTree(recog=self.parser)

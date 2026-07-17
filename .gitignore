@@ -1,0 +1,14 @@
+﻿PythonLexer.py
+PythonParser.py
+PythonLexer.interp
+PythonParser.interp
+PythonLexer.tokens
+PythonParser.tokens
+PythonParserListener.py
+PythonParserVisitor.py
+__pycache__/
+*.pyc
+.antlr/
+venv/
+env/
+.vscode/
